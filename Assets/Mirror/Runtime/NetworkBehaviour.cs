@@ -949,11 +949,6 @@ namespace Mirror
             fieldValue = value;
         }
 
-        protected T GetSyncVar<T>(ref T fieldValue)
-        {
-                return fieldValue;
-        }
-
         /// <summary>Override to do custom serialization (instead of SyncVars/SyncLists). Use OnDeserialize too.</summary>
         // if a class has syncvars, then OnSerialize/OnDeserialize are added
         // automatically.

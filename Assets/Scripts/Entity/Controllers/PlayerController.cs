@@ -191,7 +191,7 @@ public class PlayerController : EntityController
 			lookRotation = Quaternion.Slerp(lookRotation, wantedRot, lookSpeed * Time.deltaTime);
         }
 
-		Debug.Log(lookRotation);
+		//Debug.Log(lookRotation);
 	}
 
     private void FixedUpdate()
