@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlayerUnsee
   - Water
   - UI
   - Entity
   - Portal
   - PortalEntity
-  - 
+  - PortalWalls
   - 
   - 
   - 

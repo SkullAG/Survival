@@ -5,40 +5,53 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
 	public Portal exit;
-	//public GameObject walls;
+	public MeshRenderer meshRenderer;
 
-	private void OnTriggerStay(Collider other)
+    public void Start()
+    {
+		if(!meshRenderer)
+        {
+			meshRenderer = GetComponentInChildren<MeshRenderer>();
+        }
+
+	}
+
+    private void OnTriggerStay(Collider other)
 	{
 		if(other.gameObject.layer == LayerMask.NameToLayer("Entity"))
 		{
 			other.gameObject.layer = LayerMask.NameToLayer("PortalEntity");
 		}
 		
-		if(Vector3.Scale(transform.forward, (other.transform.position - transform.position)).magnitude <= 0.05f )
+		if(meshRenderer.transform.InverseTransformPoint(other.transform.position).z >= 0)
 		{
-			other.transform.position = exit.transform.TransformPoint(transform.InverseTransformPoint(other.transform.position)) + (exit.transform.forward * 0.1f);
+			other.transform.position = exit.transform.TransformPoint(transform.InverseTransformPoint(other.transform.position).invertX()) + (exit.transform.forward * 0.1f);
 
 			EntityController ec = other.GetComponent<EntityController>();
 
 			if(ec)
             {
-				//ec.lookRotation = exit.transform.rotation * Quaternion.Inverse(transform.rotation) * ec.lookRotation;
-				//other.transform.rotation = exit.transform.rotation * Quaternion.Inverse(transform.rotation) * other.transform.rotation;
-
+				ec.SetLookRotation(Quaternion.LookRotation(exit.transform.TransformDirection(-transform.InverseTransformDirection(ec.lookRotation * Vector3.forward).invertY())));
 			}
 			else
             {
-				other.transform.rotation = exit.transform.rotation * Quaternion.Inverse(transform.rotation) * other.transform.rotation;
+				other.transform.forward = exit.transform.TransformDirection(-transform.InverseTransformDirection(other.transform.forward).invertY());
 			}
 
 			Rigidbody orb = other.gameObject.GetComponent<Rigidbody>();
 
 			if(orb)
             {
-				orb.velocity = exit.transform.TransformDirection(transform.InverseTransformDirection(orb.velocity));
+				//orb.velocity = exit.transform.rotation * Quaternion.Inverse(transform.rotation) * -orb.velocity;
+				orb.velocity = exit.transform.TransformVector(-transform.InverseTransformVector(orb.velocity).invertY());
 			}
 		}
 	}
+
+	void modifyVel()
+    {
+
+    }
 
 	private void OnTriggerExit(Collider other)
 	{

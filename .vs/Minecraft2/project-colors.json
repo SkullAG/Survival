@@ -10,7 +10,17 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Archivos varios",
       "ColorIndex": -1
+    },
+    "032f5563-ac92-7fa0-8a50-e6894399cffb": {
+      "ProjectGuid": "032f5563-ac92-7fa0-8a50-e6894399cffb",
+      "DisplayName": "Mirror",
+      "ColorIndex": 1
+    },
+    "f4974252-113e-2519-37bf-ddc6201d01e9": {
+      "ProjectGuid": "f4974252-113e-2519-37bf-ddc6201d01e9",
+      "DisplayName": "Mirror.Components",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

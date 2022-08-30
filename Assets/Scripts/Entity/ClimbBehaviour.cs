@@ -68,6 +68,7 @@ public class ClimbBehaviour : MonoBehaviour
 		rb.isKinematic = true;
 
 		Vector3 initPos = transform.position;
+		Vector3 ledgePos = endPosition - Vector3.up * mainCollider.bounds.extents.y;
 
 		float progress = 0;
 
@@ -77,11 +78,10 @@ public class ClimbBehaviour : MonoBehaviour
 		{
 			progress = (climbingSpeed * time) / (endPosition - initPos).magnitude;
 
-			transform.position = CustomMath.twoPoleBezierLerp(initPos, endPosition + Vector3.up * mainCollider.bounds.extents.y,
+			transform.position = CustomMath.twoPoleBezierLerp(initPos, endPosition,
 				new Vector3(initPos.x, endPosition.y, initPos.z),
-				new Vector3(endPosition.x, initPos.y, endPosition.z),
+				ledgePos,
 				progress);
-
 
 			yield return new WaitForEndOfFrame();
 		}

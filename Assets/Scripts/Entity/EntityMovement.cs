@@ -35,13 +35,14 @@ public class EntityMovement : MonoBehaviour
 			}
 			else if (isSliding)
 			{
-				return slidingFriction;
+				return Mathf.Max(ground.collider.material.staticFriction, airFriction) * slidingFriction;
 			}
             else
             {
 				return Mathf.Max(ground.collider.material.staticFriction, airFriction);
 			}
 		} }
+
 	private float bounciness { get { return hasGround ? ground.collider.material.bounciness : 0; } }
 
 	public LayerMask groundLayer;
@@ -61,9 +62,6 @@ public class EntityMovement : MonoBehaviour
 			mainCollider = GetComponent<Collider>();
 		}
 
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-
 		rb = GetComponent<Rigidbody>();
 		controls = GetComponent<EntityController>();
 	}
@@ -79,7 +77,7 @@ public class EntityMovement : MonoBehaviour
 	{
 		Physics.SphereCast(transform.position + Vector3.up * mainCollider.bounds.extents.y, mainCollider.bounds.extents.x - 0.05f, Vector3.down, out ground, mainCollider.bounds.extents.y + 0.1f - mainCollider.bounds.extents.x, groundLayer);
 
-		//Debug.Log(transform.position + Vector3.up * mainCollider.bounds.extents.y);
+		//Debug.Log(friction);
 
 		if (controls.jumping && hasGround)
         {

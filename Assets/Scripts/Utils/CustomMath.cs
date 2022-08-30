@@ -241,10 +241,28 @@ public static class CustomMath
 		return UnityEngine.Random.Range(0, faces);
 	}
 
-	public static Vector3 divide(Vector3 a, Vector3 b)
+	public static Vector3 divide(this Vector3 a, Vector3 b)
 	{
 		return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z);
 	}
+
+	public static Vector3 invertX(this Vector3 vec)
+	{
+		vec.x = -vec.x;
+		return vec;
+	}
+	public static Vector3 invertY(this Vector3 vec)
+	{
+		vec.y = -vec.y;
+		return vec;
+	}
+	public static Vector3 invertZ(this Vector3 vec)
+	{
+		vec.z = -vec.z;
+		return vec;
+	}
+	//public static Vector3 invertY<Vector3>(this Vector3 vec) { return new Vector3(vec.x, -vec.y, vec.z); }
+	//public static Vector3 invertZ<Vector3>(this Vector3 vec) { return new Vector3(vec.x, vec.y, -vec.z); }
 
 	/*public static T OverlapCircleAll<T>(Vector2 point, float radius,int layerMask = Physics.DefaultRaycastLayers, float minDepth = -Mathf.Infinity, float maxDepth = Mathf.Infinity) where T : Collider2D
     {
