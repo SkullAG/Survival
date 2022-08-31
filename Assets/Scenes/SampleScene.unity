@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31403364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -192, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2025674409}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cdc9ae8257976d44b084d044a131248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimensions: {x: 192, y: 384, z: 192}
+  dimensions: {x: 16, y: 16, z: 16}
   blockPrefab: {fileID: 1901041608, guid: a24d8d6c1e75ef94ea5cdcb6f10c80b0, type: 3}
   blocks: []
 --- !u!1 &705507993
@@ -354,6 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2025674409}
+  - component: {fileID: 2025674410}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -376,6 +377,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2025674410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025674408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca9306ae742c024b9b42029720245ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chunks: []
 --- !u!1001 &8391113398888424319
 PrefabInstance:
   m_ObjectHideFlags: 0

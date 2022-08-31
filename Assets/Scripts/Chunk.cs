@@ -9,8 +9,13 @@ public class Chunk : MonoBehaviour
 
     public List<BlockData> blocks = new List<BlockData>();
 
+    public WorldManager worldManager;
+    //public Mesh mesh;
+
+
     private void Awake()
     {
+        worldManager = GetComponentInParent<WorldManager>();
         generate();
     }
 
@@ -37,13 +42,23 @@ public class Chunk : MonoBehaviour
 
     public void generate()
     {
+        Vector3Int blockPos = Vector3Int.zero;
         for(int num = 0; num <= (dimensions.x * dimensions.z * dimensions.y); num ++)
         {
-            int x = Mathf.FloorToInt(num % dimensions.x);
-            int y = Mathf.FloorToInt(num / dimensions.x % dimensions.y);
-            int z = Mathf.FloorToInt(num / dimensions.x / dimensions.y);
+            blockPos.x = Mathf.FloorToInt(transform.position.x + num % dimensions.x);
+            blockPos.y = Mathf.FloorToInt(transform.position.y + num / dimensions.x % dimensions.y);
+            blockPos.z = Mathf.FloorToInt(transform.position.z + num / dimensions.x / dimensions.y);
 
-            blocks.Add(Instantiate(blockPrefab.gameObject, new Vector3(x, y, z), Quaternion.identity, transform).GetComponent<BlockData>());
+            //blocks.Add(Instantiate(blockPrefab.gameObject, blockPos, Quaternion.identity, transform).GetComponent<BlockData>());
         }
+    }
+
+    
+
+    
+
+    public void rewriteMesh()
+    {
+
     }
 }

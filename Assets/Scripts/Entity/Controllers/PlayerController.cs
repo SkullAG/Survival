@@ -77,7 +77,7 @@ public class PlayerController : EntityController
 
 	public NetworkManager net = NetworkManager.singleton;
 
-	public Camera camera;
+	new public Camera camera;
 
 	public List<GameObject> UnseeObjs = new List<GameObject>();
 
