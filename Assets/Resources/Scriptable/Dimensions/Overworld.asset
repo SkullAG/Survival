@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   description: 
+  surfaceBiomes: []
+  undergroundBiomes: []

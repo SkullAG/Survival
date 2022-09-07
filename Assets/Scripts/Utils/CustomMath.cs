@@ -4,6 +4,24 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
+[Serializable]
+public struct MinMaxVector
+{
+	public int min, max;
+}
+
+[Serializable]
+public struct MinMaxVector2D
+{
+	public MinMaxVector x, y;
+}
+
+[Serializable]
+public struct MinMaxVector3D
+{
+	public MinMaxVector x, y, z;
+}
+
 public static class CustomMath
 {
 	
@@ -261,6 +279,12 @@ public static class CustomMath
 		vec.z = -vec.z;
 		return vec;
 	}
+
+	/*public static float Noise(Vector3 point)
+	{
+		Sim
+	}*/
+
 	//public static Vector3 invertY<Vector3>(this Vector3 vec) { return new Vector3(vec.x, -vec.y, vec.z); }
 	//public static Vector3 invertZ<Vector3>(this Vector3 vec) { return new Vector3(vec.x, vec.y, -vec.z); }
 

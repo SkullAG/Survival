@@ -57,9 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entity\EntityMovement.cs" />
+    <Compile Include="Assets\Scripts\BiomeData.cs" />
     <Compile Include="Assets\Scripts\Utils\ColliderResizer.cs" />
     <Compile Include="Assets\Scripts\DimensionData.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
+    <Compile Include="Assets\Scripts\Block.cs" />
+    <Compile Include="Assets\Scripts\Utils\CustomEditor\Attributes\ShowIfAttribute.cs" />
+    <Compile Include="Assets\Scripts\MarchingBlocks.cs" />
+    <Compile Include="Assets\Scripts\Utils\CustomEditor\Attributes\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Scripts\WorldManager.cs" />
     <Compile Include="Assets\Scripts\Items\PortalGun.cs" />
     <Compile Include="Assets\Scripts\Chunk.cs" />
@@ -70,7 +75,9 @@
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Utils\CustomMath.cs" />
     <Compile Include="Assets\Scripts\Entity\ClimbBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Utils\UtilsEditor.cs" />
+    <Compile Include="Assets\Scripts\Utils\CustomEditor\UtilsEditor.cs" />
+    <Compile Include="Assets\Scripts\ProceduralWorldGen.cs" />
+    <Compile Include="Assets\Scripts\Entity\ChunkLoaderEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

@@ -6,6 +6,7 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using Unity.Collections.LowLevel.Unsafe;
 using System.Runtime.InteropServices;
+using UtilityEditor;
 
 public static class WorldSaver
 {
@@ -17,6 +18,8 @@ public static class WorldSaver
 		public byte x, y, z;
 		public short id;
 	}
+
+	//[Serializable]
 
 	[MenuItem("World/CreateSaveFile")]
 	private static void createRoughSaveFile()
@@ -37,10 +40,12 @@ public static class WorldSaver
 		if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 		else { Debug.LogError("Path: \"" + path + "\" already exist, overwrite instead"); return; }
 
+		DimensionData dimension;
+
 		//path += "/" + name;
-		foreach(DimensionData d in DimensionData.dimensions)
+		for (short i = 0; i < DimensionData.dimensions.Count; i++)
 		{
-			CreateDimensionFile(name, d.name);
+			if(DimensionData.dimensions.TryGetValue(i, out dimension)) CreateDimensionFile(name, dimension.name);
 		}
 	}
 
@@ -88,7 +93,7 @@ public static class WorldSaver
 
 	public static void WriteChunckData(Chunk chunk, string dimensionName, BlockFileData[] blocks)
 	{
-		Vector3Int pos = Vector3Int.FloorToInt(chunk.transform.position);
+		Vector3Int pos = Vector3Int.FloorToInt(chunk.transform.position / 16);
 		string path = Application.dataPath + "/Saves/" + worldName + "/" + dimensionName + "/map/" + pos.x + "_" + pos.y + "_" + pos.z + ".chunck";
 
 		if (!File.Exists(path)) { Debug.LogError("Path: " + path + "doesn't exist"); return; };
@@ -159,5 +164,19 @@ public static class WorldSaver
 
 		//return MemoryMarshal.AsBytes(bfdArray.AsSpan());
 		return blocks;
+	}
+
+	public static Dictionary<short, short> ToDictionary(this BlockFileData[] bas)
+    {
+		Dictionary<short, short> d = new Dictionary<short, short>();
+		BlockFileData ba;
+		for (int i = 0; i < bas.Length; i++)
+        {
+			ba = bas[i];
+			d.Add((short)(ba.x + (ba.y * Chunk.size.x) + (ba.z * Chunk.size.x * Chunk.size.y)), ba.id);
+
+		}
+
+		return d;
 	}
 }

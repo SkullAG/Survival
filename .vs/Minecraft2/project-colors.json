@@ -25,7 +25,12 @@
       "ProjectGuid": "00d23d7e-6e17-b326-c655-d9c7336a5330",
       "DisplayName": "Mirror.Examples",
       "ColorIndex": 3
+    },
+    "fd07189e-5b68-4b6e-1fff-28abe713d039": {
+      "ProjectGuid": "fd07189e-5b68-4b6e-1fff-28abe713d039",
+      "DisplayName": "Assembly-CSharp-Editor",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 5
 }
