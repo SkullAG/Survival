@@ -114,7 +114,8 @@ public static class WorldSaver
 		Vector3Int pos = Vector3Int.FloorToInt(chunk.transform.position);
 		string path = Application.dataPath + "/Saves/" + worldName + "/" + dimensionName + "/map/" + pos.x + "_" + pos.y + "_" + pos.z + ".chunck";
 
-		if (!File.Exists(path)) { Debug.LogError("Path: " + path + "doesn't exist"); return null; };
+		//if (!File.Exists(path)) { Debug.LogError("Path: " + path + "doesn't exist"); return null; };
+		if (!File.Exists(path)) { return new BlockFileData[0]; };
 
 		return File.ReadAllBytes(path).DeserializeToBlockFileData();
 	}
@@ -178,5 +179,17 @@ public static class WorldSaver
 		}
 
 		return d;
+	}
+
+	public static void ToDictionary(this BlockFileData[] bas, ref Dictionary<short, short> d)
+	{
+		
+		d.Clear();
+		BlockFileData ba;
+		for (int i = 0; i < bas.Length; i++)
+		{
+			ba = bas[i];
+			d.Add((short)(ba.x + (ba.y * Chunk.size.x) + (ba.z * Chunk.size.x * Chunk.size.y)), ba.id);
+		}
 	}
 }

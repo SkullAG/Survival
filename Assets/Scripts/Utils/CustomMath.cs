@@ -8,18 +8,23 @@ using UnityEngine;
 public struct MinMaxVector
 {
 	public int min, max;
+
+	public int size { get { return max - min; } }
 }
 
 [Serializable]
 public struct MinMaxVector2D
 {
 	public MinMaxVector x, y;
+	public int area { get { return x.size * y.size; } }
 }
 
 [Serializable]
 public struct MinMaxVector3D
 {
 	public MinMaxVector x, y, z;
+
+	public int volume { get { return x.size * y.size * z.size; } }
 }
 
 public static class CustomMath

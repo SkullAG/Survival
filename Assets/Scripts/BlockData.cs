@@ -7,6 +7,27 @@ using UnityEngine;
 using UnityEngine.Events;
 using UtilityEditor;
 
+/*[CreateAssetMenu(fileName = "NewBlock", menuName = "Data/BlockData")]
+public class BlockDataHandler : ScriptableObject
+{
+	public static BlockDataHandler Instance;
+
+	[SerializeField]
+	public static Dictionary<short, BlockData> blocks = new Dictionary<short, BlockData>();
+
+    private void Awake()
+    {
+		if (Instance != null && Instance != this)
+		{
+			Destroy(this);
+		}
+		else
+		{
+			Instance = this;
+		}
+	}
+}*/
+
 [CreateAssetMenu(fileName = "NewBlock", menuName = "Data/BlockData")]
 public class BlockData : ScriptableObject
 {
@@ -51,6 +72,8 @@ public class BlockData : ScriptableObject
 	[HideIf("isVoid")]
 	public GameObject prefab;
 
+	public short renderGroup;
+
 	//public List<BlockData> dmList => blocks;
 
 	[MenuItem("World/DebugBlockList")]
@@ -74,10 +97,14 @@ public class BlockData : ScriptableObject
 		//dmList = blocks;
 	}
 
-	private void OnEnable()
+    private void Awake()
     {
 		Debug.Log("BlockAwake");
+	}
 
+    private void OnEnable()
+    {
+		Debug.Log("BlockEnable");
 		if (!blocks.Contains(new KeyValuePair<short, BlockData>(this.id, this)))
 		{
 			//Debug.Log("hell o god no " + id );
@@ -86,6 +113,29 @@ public class BlockData : ScriptableObject
 			//Debug.Log("Block " + id + " added");
 		}
 	}
+
+#if UNITY_EDITOR
+	private void OnValidate()
+    {
+		if (isVoid) isMarching = false;
+
+		if (isVoid) canSeeThrough = false;
+
+		if (isVoid) stopsLiquids = true;
+
+		if (isVoid) needsInstantiation = false;
+
+		if (isVoid) physicMaterial = null;
+
+		if (isVoid) Material = null;
+
+		if (isVoid && !needsInstantiation) prefab = null;
+
+		if (isVoid) renderGroup = 0;
+		else if (canSeeThrough || needsInstantiation) renderGroup = 1;
+		else renderGroup = 2;
+	}
+#endif
 
 	short GetNewId()
 	{
